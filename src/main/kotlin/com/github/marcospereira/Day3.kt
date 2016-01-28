@@ -52,14 +52,14 @@ class Day3(file: File) {
      *     - `^v^v^v^v^v` delivers a bunch of presents to some very
      *       lucky children at only 2 houses.
      */
-    fun part1(): List<Position> {
+    fun part1(): Set<Position> {
         var currentPosition = Position(0, 0)
-        var positions = arrayListOf(currentPosition)
-        instructions.mapTo(positions) { instruction ->
+        var positions = hashSetOf(currentPosition)
+        instructions.forEach { instruction ->
             currentPosition = instruction.invoke(currentPosition)
-            currentPosition
+            positions.add(currentPosition)
         }
-        return positions.distinct()
+        return positions
     }
 
     /**
@@ -81,10 +81,10 @@ class Day3(file: File) {
      *     - `^v^v^v^v^v` now delivers presents to 11 houses, with Santa going
      *       one direction and Robo-Santa going the other.
      */
-    fun part2(): List<Position> {
+    fun part2(): Set<Position> {
         var santaPosition = Position(0, 0)
         var robotPosition = Position(0, 0)
-        var positions = arrayListOf(santaPosition, robotPosition)
+        var positions = hashSetOf(santaPosition, robotPosition)
         instructions.mapIndexedTo(positions) { index, instruction ->
             if (index % 2 == 0) {
                 santaPosition = instruction.invoke(santaPosition)
@@ -94,7 +94,7 @@ class Day3(file: File) {
                 robotPosition
             }
         }
-        return positions.distinct()
+        return positions
     }
 
     companion object {
