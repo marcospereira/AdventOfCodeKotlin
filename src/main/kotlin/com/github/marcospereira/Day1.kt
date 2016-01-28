@@ -15,9 +15,9 @@ fun Char.toInstruction() = if (this == '(') 1 else -1
  * available on each day in the advent calendar; the second puzzle is unlocked
  * when you complete the first. Each puzzle grants **one star**. Good luck!
  */
-class Day1(val file: File) {
+class Day1(val input: String) {
 
-    val instructions = file.readText().map { it.toInstruction() }
+    val instructions = input.map { it.toInstruction() }
 
     /**
      * Here's an easy puzzle to warm you up.
@@ -69,7 +69,7 @@ class Day1(val file: File) {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val day1 = Day1(File("src/main/resources/day1.txt"))
+            val day1 = Day1(File("src/main/resources/day1.txt").readText())
             println(day1.floor1())
             println(day1.floor2())
         }
