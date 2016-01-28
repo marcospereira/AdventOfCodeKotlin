@@ -60,11 +60,10 @@ class Day1(val file: File) {
      */
     fun floor2(): Int {
         var floor = 0
-        for((index, value) in instructions.withIndex()) {
-            floor += value
-            if (floor == -1) return (index + 1) // first floor is "1"
-        }
-        return -1
+        return instructions.indexOfFirst {
+            floor += it
+            floor == -1
+        } + 1 // floors are 1 based instead of 0 based
     }
 
     companion object {
