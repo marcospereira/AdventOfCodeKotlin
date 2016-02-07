@@ -11,21 +11,13 @@ abstract class Day() {
 
     fun run() = println("""
         Class: ${javaClass.simpleName}
-            Part 1: ${runPart1()}
-            Part 2: ${runPart2()}"""
+            Part 1: ${runSafely { part1() }}
+            Part 2: ${runSafely { part2() }}"""
     )
 
-    private fun runPart1(): Any? {
+    private fun runSafely(part: () -> Any?): Any? {
         try {
-            return part1()
-        } catch (e: UnsupportedOperationException) {
-            return "Not implemented"
-        }
-    }
-
-    private fun runPart2(): Any? {
-        try {
-            return part2()
+            return part()
         } catch (e: UnsupportedOperationException) {
             return "Not implemented"
         }
