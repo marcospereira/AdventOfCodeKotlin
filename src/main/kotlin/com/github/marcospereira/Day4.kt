@@ -35,7 +35,7 @@ class Day4(val input: String) {
      */
     fun startsWithSixZeroes() = startingWith("000000")
 
-    private fun startingWith(s: String) = sequence(0) { it + 1 }.find { md5(it).startsWith(s) }
+    private fun startingWith(s: String) = generateSequence(0) { it + 1 }.find { md5(it).startsWith(s) }
 
     companion object {
         @JvmStatic

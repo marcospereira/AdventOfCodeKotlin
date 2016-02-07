@@ -16,7 +16,7 @@ apply plugin: 'kotlin'
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile 'commons-codec:commons-codec:1.10'
-    testCompile 'org.jetbrains.spek:spek:0.1.189'
+    testCompile 'org.jetbrains.spek:spek:0.1.194'
 }
 repositories {
     mavenCentral()
