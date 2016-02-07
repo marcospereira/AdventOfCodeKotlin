@@ -158,9 +158,7 @@ class Day6() : Day() {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val day = Day6()
-            println("Lit lights: ${day.part1()}")
-            println("LIght intensity: ${day.part2()}")
+            Day6().run()
         }
     }
 }
