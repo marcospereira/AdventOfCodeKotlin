@@ -1,7 +1,5 @@
 package com.github.marcospereira
 
-import java.io.File
-
 val checkTwiceRule = Regex("(\\p{Alpha})\\1+")
 val checkBadParts = Regex("ab|cd|pq|xy")
 
@@ -21,7 +19,7 @@ data class Word(val word: String) {
  * Santa needs help figuring out which strings in his text file are
  * naughty or nice.
  */
-class Day5(val file: File) {
+class Day5() : Day() {
 
     val words = file.readLines().map { Word(it) }
 
@@ -49,13 +47,16 @@ class Day5(val file: File) {
      *
      * How many strings are nice?
      */
-    fun part1() = words.filter { it.nice() }.size
+    override fun part1() = words.filter { it.nice() }.size
+
+    override fun part2(): Any {
+        throw UnsupportedOperationException()
+    }
 
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val day5 = Day5(File("src/main/resources/day5.txt"))
-            println(day5.part1())
+            Day5().run()
         }
     }
 }
