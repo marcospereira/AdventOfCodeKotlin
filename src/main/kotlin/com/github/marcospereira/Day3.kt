@@ -1,15 +1,13 @@
 package com.github.marcospereira
 
-import java.io.File
-
 data class Position(val x: Int, val y: Int)
 
 object Instructions {
     val north = { p: Position -> p.copy(p.x, p.y + 1) }
     val south = { p: Position -> p.copy(p.x, p.y - 1) }
-    val east  = { p: Position -> p.copy(p.x + 1, p.y) }
-    val west  = { p: Position -> p.copy(p.x - 1, p.y) }
-    val none  = { p: Position -> p }
+    val east = { p: Position -> p.copy(p.x + 1, p.y) }
+    val west = { p: Position -> p.copy(p.x - 1, p.y) }
+    val none = { p: Position -> p }
 }
 
 /**
@@ -21,14 +19,14 @@ object Instructions {
  * and then an elf at the North Pole calls him via radio and tells him where
  * to move next.
  */
-class Day3(file: File) {
+class Day3() : Day() {
 
     val instructions = file.readText().map {
-        when(it) {
-            '^'  -> Instructions.north
-            'v'  -> Instructions.south
-            '>'  -> Instructions.east
-            '<'  -> Instructions.west
+        when (it) {
+            '^' -> Instructions.north
+            'v' -> Instructions.south
+            '>' -> Instructions.east
+            '<' -> Instructions.west
             else -> Instructions.none
         }
     }
@@ -52,7 +50,7 @@ class Day3(file: File) {
      *     - `^v^v^v^v^v` delivers a bunch of presents to some very
      *       lucky children at only 2 houses.
      */
-    fun part1(): Set<Position> {
+    override fun part1(): Set<Position> {
         var currentPosition = Position(0, 0)
         var positions = hashSetOf(currentPosition)
         instructions.forEach { instruction ->
@@ -81,7 +79,7 @@ class Day3(file: File) {
      *     - `^v^v^v^v^v` now delivers presents to 11 houses, with Santa going
      *       one direction and Robo-Santa going the other.
      */
-    fun part2(): Set<Position> {
+    override fun part2(): Set<Position> {
         var santaPosition = Position(0, 0)
         var robotPosition = Position(0, 0)
         var positions = hashSetOf(santaPosition, robotPosition)
@@ -100,9 +98,7 @@ class Day3(file: File) {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val day3 = Day3(File("src/main/resources/day3.txt"))
-            println(day3.part1().size)
-            println(day3.part2().size)
+            Day3().run()
         }
     }
 }
