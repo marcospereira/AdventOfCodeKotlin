@@ -8,9 +8,9 @@ import org.apache.commons.codec.digest.DigestUtils
  * Santa needs help mining some AdventCoins (very similar to bitcoins) to use
  * as gifts for all the economically forward-thinking little girls and boys.
  */
-class Day4(val input: String) {
+class Day4() : Day() {
 
-    fun md5(number: Int) = DigestUtils.md5Hex(input + number)
+    fun md5(number: Int) = DigestUtils.md5Hex(file.readText() + number)
 
     /**
      * To do this, he needs to find MD5 hashes which, in hexadecimal, start with
@@ -28,21 +28,21 @@ class Day4(val input: String) {
      *       make an MD5 hash starting with five zeroes is `1048970`; that is, the MD5
      *       hash of `pqrstuv1048970` looks like `000006136ef...`.
      */
-    fun startsWithFiveZeroes() = startingWith("00000")
+    override fun part1() = startingWith("00000")
 
     /**
      * Now find one that starts with **six zeroes**.
      */
-    fun startsWithSixZeroes() = startingWith("000000")
+    override fun part2() = startingWith("000000")
 
-    private fun startingWith(s: String) = sequence(0) { it + 1 }.find { md5(it).startsWith(s) }
+    private fun startingWith(s: String) = generateSequence(0) { it + 1 }.find { md5(it).startsWith(s) }
 
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val day4 = Day4("bgvyzdsv")
-            println(day4.startsWithFiveZeroes())
-            println(day4.startsWithSixZeroes())
+            val day4 = Day4()
+            println(day4.part1())
+            println(day4.part2())
         }
     }
 }

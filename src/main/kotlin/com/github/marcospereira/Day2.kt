@@ -1,7 +1,5 @@
 package com.github.marcospereira
 
-import java.io.File
-
 /**
  * ## Day 2: I Was Told There Would Be No Math
  *
@@ -10,7 +8,7 @@ import java.io.File
  * and height `h`) of each present, and only want to order exactly as much as
  * they need.
  */
-class Day2(val file: File) {
+class Day2() : Day() {
 
     val boxes = file.readLines().map { line ->
         val (l, w, h) = line.split("x")
@@ -36,7 +34,7 @@ class Day2(val file: File) {
      * All numbers in the elves' list are in feet. How many **total square feet** of
      * wrapping paper should they order?
      */
-    fun part1() = boxes.sumBy { it.requiredWrappingPaper() }
+    override fun part1() = boxes.sumBy { it.requiredWrappingPaper() }
 
     /**
      * ## Part Two
@@ -62,14 +60,12 @@ class Day2(val file: File) {
      *
      * How many total **feet of ribbon** should they order?
      */
-    fun part2() = boxes.sumBy { it.requiredFeetOfRibbon() }
+    override fun part2() = boxes.sumBy { it.requiredFeetOfRibbon() }
 
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val day2 = Day2(File("src/main/resources/day2.txt"))
-            println(day2.part1())
-            println(day2.part2())
+            Day2().run()
         }
     }
 }

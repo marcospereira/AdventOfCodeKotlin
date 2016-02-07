@@ -1,7 +1,5 @@
 package com.github.marcospereira
 
-import java.io.File
-
 fun Char.toInstruction() = if (this == '(') 1 else -1
 
 /**
@@ -15,7 +13,7 @@ fun Char.toInstruction() = if (this == '(') 1 else -1
  * available on each day in the advent calendar; the second puzzle is unlocked
  * when you complete the first. Each puzzle grants **one star**. Good luck!
  */
-class Day1(val file: File) {
+class Day1() : Day() {
 
     val instructions = file.readText().map { it.toInstruction() }
 
@@ -43,7 +41,7 @@ class Day1(val file: File) {
      *
      * To **what floor** do the instructions take Santa?
      */
-    fun floor1() = instructions.sum()
+    override fun part1() = instructions.sum()
 
     /**
      * Now, given the same instructions, find the position of the first character
@@ -58,7 +56,7 @@ class Day1(val file: File) {
      * What is the **position** of the character that causes Santa to first enter
      * the basement?
      */
-    fun floor2(): Int {
+    override fun part2(): Int {
         var floor = 0
         return instructions.indexOfFirst {
             floor += it
@@ -69,9 +67,7 @@ class Day1(val file: File) {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val day1 = Day1(File("src/main/resources/day1.txt"))
-            println(day1.floor1())
-            println(day1.floor2())
+            Day1().run()
         }
     }
 }
