@@ -1,6 +1,6 @@
 package com.github.marcospereira
 
-import com.github.marcospereira.day7.Day7
+import com.github.marcospereira.day8.Day8
 
 /**
  * Created by francois on 2016-02-07.
@@ -14,7 +14,8 @@ class DayRunner {
                 //                Day4(), //slow
                 //                Day5(),
                 //                Day6(),
-                Day7()
+                //                Day7(),
+                Day8()
         )
 
         @JvmStatic
