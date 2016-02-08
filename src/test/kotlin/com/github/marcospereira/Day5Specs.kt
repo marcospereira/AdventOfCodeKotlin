@@ -1,8 +1,9 @@
 package com.github.marcospereira
 
-import org.jetbrains.spek.api.*
-import kotlin.test.assertTrue
+import com.github.marcospereira.day5.Word
+import org.jetbrains.spek.api.Spek
 import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class Day5Specs : Spek() {
     init {
