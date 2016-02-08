@@ -1,4 +1,6 @@
-package com.github.marcospereira
+package com.github.marcospereira.day5
+
+import com.github.marcospereira.Day
 
 val checkTwiceRule = Regex("(\\p{Alpha})\\1+")
 val checkBadParts = Regex("ab|cd|pq|xy")

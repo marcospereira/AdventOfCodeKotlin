@@ -1,5 +1,6 @@
-package com.github.marcospereira
+package com.github.marcospereira.day4
 
+import com.github.marcospereira.Day
 import org.apache.commons.codec.digest.DigestUtils
 
 /**

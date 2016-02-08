@@ -1,6 +1,7 @@
 package com.github.marcospereira
 
-import org.jetbrains.spek.api.*
+import com.github.marcospereira.day2.Box
+import org.jetbrains.spek.api.Spek
 import kotlin.test.assertEquals
 
 class Day2Specs : Spek() {

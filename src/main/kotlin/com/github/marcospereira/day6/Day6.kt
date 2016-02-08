@@ -1,5 +1,6 @@
-package com.github.marcospereira
+package com.github.marcospereira.day6
 
+import com.github.marcospereira.Day
 import java.util.*
 
 /**

@@ -1,4 +1,6 @@
-package com.github.marcospereira
+package com.github.marcospereira.day3
+
+import com.github.marcospereira.Day
 
 data class Position(val x: Int, val y: Int)
 

@@ -1,4 +1,6 @@
-package com.github.marcospereira
+package com.github.marcospereira.day1
+
+import com.github.marcospereira.Day
 
 fun Char.toInstruction() = if (this == '(') 1 else -1
 

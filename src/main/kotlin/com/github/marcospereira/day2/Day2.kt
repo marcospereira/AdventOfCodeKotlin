@@ -1,4 +1,6 @@
-package com.github.marcospereira
+package com.github.marcospereira.day2
+
+import com.github.marcospereira.Day
 
 /**
  * ## Day 2: I Was Told There Would Be No Math
