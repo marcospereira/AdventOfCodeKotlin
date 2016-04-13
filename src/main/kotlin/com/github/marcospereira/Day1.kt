@@ -15,7 +15,15 @@ fun Char.toInstruction() = if (this == '(') 1 else -1
  */
 class Day1() : Day() {
 
-    val instructions = file.readText().map { it.toInstruction() }
+    var input: String = ""
+
+    constructor(input: String): this() {
+        this.input = input
+    }
+
+    fun instructions(): List<Int> =
+        if (input.isEmpty()) file.readText().map { it.toInstruction() }
+        else input.map { it.toInstruction() }
 
     /**
      * Here's an easy puzzle to warm you up.
@@ -41,7 +49,7 @@ class Day1() : Day() {
      *
      * To **what floor** do the instructions take Santa?
      */
-    override fun part1() = instructions.sum()
+    override fun part1() = instructions().sum()
 
     /**
      * Now, given the same instructions, find the position of the first character
@@ -58,7 +66,7 @@ class Day1() : Day() {
      */
     override fun part2(): Int {
         var floor = 0
-        return instructions.indexOfFirst {
+        return instructions().indexOfFirst {
             floor += it
             floor == -1
         } + 1 // floors are 1 based instead of 0 based

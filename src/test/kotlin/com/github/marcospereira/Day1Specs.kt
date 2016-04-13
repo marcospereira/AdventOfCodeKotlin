@@ -19,7 +19,7 @@ class Day1Specs : Spek() {
             ).forEach { pair ->
                 // replace to keep spek report readable
                 on("input ${pair.first.replace('(', 'u').replace(')', 'd')}") {
-                    val day1 = Day1()
+                    val day1 = Day1(pair.first)
                     it("should go to floor ${pair.second}", { assertEquals(pair.second, day1.part1()) })
                 }
             }
@@ -30,7 +30,7 @@ class Day1Specs : Spek() {
                     Pair("()())", 5)
             ).forEach { pair ->
                 on("input ${pair.first.replace('(', 'u').replace(')', 'd')}") {
-                    val day1 = Day1()
+                    val day1 = Day1(pair.first)
                     it("should reach basement at instruction ${pair.second}",  { assertEquals(pair.second, day1.part2()) })
                 }
             }
