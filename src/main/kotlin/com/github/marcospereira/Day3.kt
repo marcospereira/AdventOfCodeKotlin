@@ -50,14 +50,14 @@ class Day3() : Day() {
      *     - `^v^v^v^v^v` delivers a bunch of presents to some very
      *       lucky children at only 2 houses.
      */
-    override fun part1(): Set<Position> {
+    override fun part1(): Int {
         var currentPosition = Position(0, 0)
         var positions = hashSetOf(currentPosition)
         instructions.forEach { instruction ->
             currentPosition = instruction.invoke(currentPosition)
             positions.add(currentPosition)
         }
-        return positions
+        return positions.size
     }
 
     /**
@@ -79,7 +79,7 @@ class Day3() : Day() {
      *     - `^v^v^v^v^v` now delivers presents to 11 houses, with Santa going
      *       one direction and Robo-Santa going the other.
      */
-    override fun part2(): Set<Position> {
+    override fun part2(): Int {
         var santaPosition = Position(0, 0)
         var robotPosition = Position(0, 0)
         var positions = hashSetOf(santaPosition, robotPosition)
@@ -92,7 +92,7 @@ class Day3() : Day() {
                 robotPosition
             }
         }
-        return positions
+        return positions.size
     }
 
     companion object {
