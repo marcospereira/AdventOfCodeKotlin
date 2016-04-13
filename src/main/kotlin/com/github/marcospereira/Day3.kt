@@ -32,6 +32,8 @@ class Day3() : Day() {
     }
 
     /**
+     * ### Part One
+     *
      * Moves are always exactly one house to the north (`^`),
      * south (`v`), east (`>`), or west (`<`). After each move,
      * he delivers another present to the house at his new location.
@@ -61,6 +63,8 @@ class Day3() : Day() {
     }
 
     /**
+     * ### Part Two
+     *
      * The next year, to speed up the process, Santa creates a robot version of
      * himself, Robo-Santa, to deliver presents with him.
      *

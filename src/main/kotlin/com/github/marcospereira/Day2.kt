@@ -16,6 +16,8 @@ class Day2() : Day() {
     }
 
     /**
+     * ### Part One
+     *
      * Fortunately, every present is a box (a perfect
      * [right rectangular prism](https://en.wikipedia.org/wiki/Cuboid#Rectangular_cuboid)),
      * which makes calculating the required wrapping paper for each gift a little
@@ -37,7 +39,7 @@ class Day2() : Day() {
     override fun part1() = boxes.sumBy { it.requiredWrappingPaper() }
 
     /**
-     * ## Part Two
+     * ### Part Two
      *
      * The elves are also running low on ribbon. Ribbon is all the same width,
      * so they only have to worry about the length they need to order, which they

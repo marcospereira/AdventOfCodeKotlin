@@ -42,6 +42,8 @@ class Day5() : Day() {
     val words2 = file.readLines().map { Word2(it) }
 
     /**
+     * ### Part One
+     *
      * A nice string is one with all of the following properties:
      *
      *     - It contains at least three vowels (aeiou only), like aei,
@@ -68,23 +70,32 @@ class Day5() : Day() {
     override fun part1() = words.filter { it.nice() }.size
 
     /**
-     * Realizing the error of his ways, Santa has switched to a better model of determining whether a string is naughty or
-     * nice. None of the old rules apply, as they are all clearly ridiculous.
+     * ### Part Two
      *
+     * Realizing the error of his ways, Santa has switched to a better model
+     * of determining whether a string is naughty or nice. None of the old
+     * rules apply, as they are all clearly ridiculous.
      *
      * Now, a nice string is one with all of the following properties:
      *
+     *      - It contains a pair of any two letters that appears at least twice
+     *        in the string without overlapping, like xyxy (xy) or aabcdefgaa (aa),
+     *        but not like aaa (aa, but it overlaps).
+     *      - It contains at least one letter which repeats with exactly one letter
+     *        between them, like xyx, abcdefeghi (efe), or even aaa.
      *
-     * It contains a pair of any two letters that appears at least twice in the string without overlapping, like xyxy (xy)
-     * or aabcdefgaa (aa), but not like aaa (aa, but it overlaps). It contains at least one letter which repeats with
-     * exactly one letter between them, like xyx, abcdefeghi (efe), or even aaa. For example:
+     * For example:
      *
+     *      - qjhvhtzxzqqjkmpb is nice because is has a pair that appears twice (qj)
+     *        and a letter that repeats with exactly one letter between them (zxz).
+     *      - xxyxx is nice because it has a pair that appears twice and a letter
+     *        that repeats with one between, even though the letters used by each
+     *        rule overlap.
+     *      - uurcxstgmygtbstg is naughty because it has a pair (tg) but no repeat
+     *        with a single letter between them. ieodomkazucvgmuy is naughty because
+     *        it has a repeating letter with one between (odo), but no pair that appears twice.
      *
-     * qjhvhtzxzqqjkmpb is nice because is has a pair that appears twice (qj) and a letter that repeats with exactly one
-     * letter between them (zxz). xxyxx is nice because it has a pair that appears twice and a letter that repeats with one
-     * between, even though the letters used by each rule overlap. uurcxstgmygtbstg is naughty because it has a pair (tg)
-     * but no repeat with a single letter between them. ieodomkazucvgmuy is naughty because it has a repeating letter with
-     * one between (odo), but no pair that appears twice. How many strings are nice under these new rules?
+     * How many strings are nice under these new rules?
      */
     override fun part2() = words2.filter { it.nice() }.size
 

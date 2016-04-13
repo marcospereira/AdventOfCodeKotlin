@@ -13,6 +13,8 @@ class Day4() : Day() {
     fun md5(number: Int) = DigestUtils.md5Hex(file.readText() + number)
 
     /**
+     * ### Part One
+     *
      * To do this, he needs to find MD5 hashes which, in hexadecimal, start with
      * at least five zeroes. The input to the MD5 hash is some secret key (your
      * puzzle input, given below) followed by a number in decimal. To mine
@@ -31,6 +33,8 @@ class Day4() : Day() {
     override fun part1() = startingWith("00000")
 
     /**
+     * ### Part Two
+     *
      * Now find one that starts with **six zeroes**.
      */
     override fun part2() = startingWith("000000")
