@@ -2,33 +2,17 @@ package com.github.marcospereira
 
 val checkTwiceRule = Regex("(\\p{Alpha})\\1+")
 val checkBadParts = Regex("ab|cd|pq|xy")
-
-data class Word(val word: String) {
-    fun containsAtLeastThreeVowels() = word.count { "aeiou".contains(it) } >= 3
-
-    fun anyLetterAppearsTwiceInARow() = checkTwiceRule.containsMatchIn(word)
-
-    fun containsBadParts() = checkBadParts.containsMatchIn(word)
-
-    fun nice() = containsAtLeastThreeVowels() && anyLetterAppearsTwiceInARow() && !containsBadParts()
-}
-
 val pairTwiceRule = Regex(".*?((\\w\\w)\\w*\\2).*?")
 val repeatInBetweenRule = Regex(".*?((\\w)\\w\\2).*?")
 
-data class Word2(val word: String) {
-    fun containsPairThatAppearsTwice(): Boolean {
-        val containsMatchIn = pairTwiceRule.containsMatchIn(word)
-        return containsMatchIn
-    }
+fun String.containsAtLeastThreeVowels() = this.count { "aeiou".contains(it) } >= 3
+fun String.anyLetterAppearsTwiceInARow() = checkTwiceRule.containsMatchIn(this)
+fun String.containsBadParts() = checkBadParts.containsMatchIn(this)
+fun String.nice1() = containsAtLeastThreeVowels() && anyLetterAppearsTwiceInARow() && !containsBadParts()
 
-    fun containsLetterThatRepeatsWithOneInBetween(): Boolean {
-        val containsMatchIn = repeatInBetweenRule.containsMatchIn(word)
-        return containsMatchIn
-    }
-
-    fun nice() = containsPairThatAppearsTwice() && containsLetterThatRepeatsWithOneInBetween()
-}
+fun String.containsPairThatAppearsTwice() = pairTwiceRule.containsMatchIn(this)
+fun String.containsLetterThatRepeatsWithOneInBetween() = repeatInBetweenRule.containsMatchIn(this)
+fun String.nice2() = containsPairThatAppearsTwice() && containsLetterThatRepeatsWithOneInBetween()
 
 /**
  * ## Day 5: Doesn't He Have Intern-Elves For This?
@@ -38,8 +22,7 @@ data class Word2(val word: String) {
  */
 class Day5() : Day() {
 
-    val words = file.readLines().map { Word(it) }
-    val words2 = file.readLines().map { Word2(it) }
+    val words = file.readLines()
 
     /**
      * ### Part One
@@ -67,7 +50,7 @@ class Day5() : Day() {
      *
      * How many strings are nice?
      */
-    override fun part1() = words.filter { it.nice() }.size
+    override fun part1() = words.filter { it.nice1() }.size
 
     /**
      * ### Part Two
@@ -97,7 +80,7 @@ class Day5() : Day() {
      *
      * How many strings are nice under these new rules?
      */
-    override fun part2() = words2.filter { it.nice() }.size
+    override fun part2() = words.filter { it.nice2() }.size
 
     companion object {
         @JvmStatic
