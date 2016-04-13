@@ -2,7 +2,7 @@ group 'com.github.marcospereira'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.0.0'
+    ext.kotlin_version = '1.0.1-2'
     repositories {
         mavenCentral()
     }
