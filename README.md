@@ -1,6 +1,6 @@
 # Advent of Code in Kotlin
 
-[![Build Status](https://travis-ci.org/marcospereira/AdventOfCodeKotlin.svg?branch=master)](https://travis-ci.org/marcospereira/AdventOfCodeKotlin)
+[![Build Status](https://travis-ci.org/marcospereira/AdventOfCodeKotlin.svg?branch=master)](https://travis-ci.org/marcospereira/AdventOfCodeKotlin) [![codecov.io](https://codecov.io/github/marcospereira/AdventOfCodeKotlin/coverage.svg?branch=master)](https://codecov.io/github/marcospereira/AdventOfCodeKotlin?branch=master)
 
 My solutions to [Advent of Code](http://adventofcode.com/) using [Kotlin](https://kotlinlang.org/).
 
