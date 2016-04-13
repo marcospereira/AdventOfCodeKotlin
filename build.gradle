@@ -11,7 +11,12 @@ buildscript {
     }
 }
 
-apply plugin: 'kotlin'
+apply plugin: "kotlin"
+apply plugin: 'application'
+
+defaultTasks 'run'
+
+mainClassName = 'com.github.marcospereira.DayRunner'
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -27,6 +32,3 @@ repositories {
     }
 }
 
-sourceSets {
-    main.java.srcDirs += 'src/main/kotlin'
-}
