@@ -1,7 +1,5 @@
 package com.github.marcospereira
 
-import java.util.*
-
 /**
  * ## Day 6: Probably a Fire Hazard
  *
@@ -14,7 +12,7 @@ import java.util.*
  */
 class Day6() : Day() {
 
-    val pattern = "(.*?)\\s(\\d{1,}),(\\d{1,})\\sthrough\\s(\\d{1,}),(\\d{1,})".toPattern()
+    val numbers = Regex("\\d+")
 
     /**
      * ### Part One
@@ -39,48 +37,24 @@ class Day6() : Day() {
      * After following the instructions, how many lights are lit?
      */
     override fun part1(): Any {
-        val operations = LinkedList<ArrayOperation2D<Boolean>>()
-        val lights = Array(1000, { Array(1000, { false }) })
-
-        file.readLines().forEach {
-            val matcher = pattern.matcher(it)
-            if (matcher.matches()) {
-                val op = matcher.group(1)
-                val startX = matcher.group(2).toInt()
-                val startY = matcher.group(3).toInt()
-                val endX = matcher.group(4).toInt()
-                val endY = matcher.group(5).toInt()
-
-                operations += when (op) {
-                    "turn on" -> {
-                        ArrayOperation2D(startX..endX, startY..endY, { x, y, array: Array<Array<Boolean>> ->
-                            array[x][y] = true
-                        })
-                    }
-                    "turn off" -> {
-                        ArrayOperation2D(startX..endX, startY..endY, { x, y, array: Array<Array<Boolean>> ->
-                            array[x][y] = false
-                        })
-                    }
-                    "toggle" -> {
-                        ArrayOperation2D(startX..endX, startY..endY, { x, y, array: Array<Array<Boolean>> ->
-                            array[x][y] = !array[x][y]
-                        })
-                    }
-                    else -> ArrayOperation2D(startX..endX, startY..endY, { x, y, array -> return@ArrayOperation2D })
-                }
+        val lights = Array(1000, { Array(1000, { 0 }) })
+        file.readLines().forEach { line ->
+            val (x0, y0, x1, y1) = numbers.findAll(line).map { it.value.toInt() }.toList()
+            when {
+                line.startsWith("turn on") -> operate(lights, x0, y0, x1, y1) { 1 }
+                line.startsWith("turn off") -> operate(lights, x0, y0, x1, y1) { 0 }
+                line.startsWith("toggle") -> operate(lights, x0, y0, x1, y1) { if (it == 0) 1 else 0 }
             }
         }
+        return lights.map { row -> row.count { it == 1 }}.sum()
+    }
 
-        operations.forEach { it.performAction(lights) }
-
-        var litLights = 0
-        lights.forEach {
-            litLights += it.sumBy {
-                return@sumBy if (it) 1 else 0
+    private fun operate(lights: Array<Array<Int>>, x0: Int, y0: Int, x1: Int, y1: Int, action: (Int) -> Int) {
+        for(x in x0..x1) {
+            for(y in y0..y1) {
+                lights[x][y] = action(lights[x][y])
             }
         }
-        return litLights
     }
 
     /**
@@ -107,61 +81,16 @@ class Day6() : Day() {
      *      - toggle 0,0 through 999,999 would increase the total brightness by 2000000.
      */
     override fun part2(): Any {
-        val operations = LinkedList<ArrayOperation2D<Int>>()
-        val lightsPart2 = Array(1000, { Array(1000, { 0 }) })
-
-        file.readLines().forEach {
-            val matcher = pattern.matcher(it)
-            if (matcher.matches()) {
-                val op = matcher.group(1)
-                val startX = matcher.group(2).toInt()
-                val startY = matcher.group(3).toInt()
-                val endX = matcher.group(4).toInt()
-                val endY = matcher.group(5).toInt()
-
-                operations += when (op) {
-                    "turn on" -> {
-                        ArrayOperation2D(startX..endX, startY..endY, { x, y, array: Array<Array<Int>> ->
-                            array[x][y] += 1
-                        })
-                    }
-                    "turn off" -> {
-                        ArrayOperation2D(startX..endX, startY..endY, { x, y, array: Array<Array<Int>> ->
-                            array[x][y] -= 1
-                            if (array[x][y] < 0) {
-                                array[x][y] = 0
-                            }
-                        })
-                    }
-                    "toggle" -> {
-                        ArrayOperation2D(startX..endX, startY..endY, { x, y, array: Array<Array<Int>> ->
-                            array[x][y] += 2
-                        })
-                    }
-                    else -> ArrayOperation2D(startX..endX, startY..endY, { x, y, array -> return@ArrayOperation2D })
-                }
+        val lights = Array(1000, { Array(1000, { 0 }) })
+        file.readLines().forEach { line ->
+            val (x0, y0, x1, y1) = numbers.findAll(line).map { it.value.toInt() }.toList()
+            when {
+                line.startsWith("turn on") -> operate(lights, x0, y0, x1, y1) { it + 1 }
+                line.startsWith("turn off") -> operate(lights, x0, y0, x1, y1) { Math.max(0, it - 1) }
+                line.startsWith("toggle") -> operate(lights, x0, y0, x1, y1) { it + 2 }
             }
         }
-
-        operations.forEach { it.performAction(lightsPart2) }
-
-        var litLights = 0
-        lightsPart2.forEach {
-            litLights += it.sumBy {
-                return@sumBy it
-            }
-        }
-        return litLights
-    }
-
-    class ArrayOperation2D<T>(val xRange: IntRange, val yRange: IntRange, val action: (Int, Int, Array<Array<T>>) -> Unit) {
-        fun performAction(array: Array<Array<T>>) {
-            for (i in xRange) {
-                for (j in yRange) {
-                    action(i, j, array)
-                }
-            }
-        }
+        return lights.map { row -> row.sum() }.sum()
     }
 
     companion object {
