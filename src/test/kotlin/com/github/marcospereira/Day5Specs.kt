@@ -9,32 +9,27 @@ class Day5Specs : Spek() {
         given("Word") {
             listOf("aei", "xazegov", "aeiouaeiouaeiou").forEach { input ->
                 on("check vowels for $input") {
-                    val word = Word(input)
-                    it("contains three or more vowels", { assertTrue(word.containsAtLeastThreeVowels()) })
+                    it("contains three or more vowels", { assertTrue(input.containsAtLeastThreeVowels()) })
                 }
             }
             listOf("xx", "acbdde", "aaddccbb").forEach { input ->
                 on("check repeated letters for $input") {
-                    val word = Word(input)
-                    it("contains at least one letter that appears twice in a row", { assertTrue(word.anyLetterAppearsTwiceInARow()) })
+                    it("contains at least one letter that appears twice in a row", { assertTrue(input.anyLetterAppearsTwiceInARow()) })
                 }
             }
             listOf("abcdde", "aabbccdd", "aeiouddab", "aaacd", "aaapq", "aaaxy").forEach { input ->
                 on("check bad parts for $input") {
-                    val word = Word(input)
-                    it("contains bad parts", { assertTrue(word.containsBadParts()) })
+                    it("contains bad parts", { assertTrue(input.containsBadParts()) })
                 }
             }
             listOf("ugknbfddgicrmopn", "aaa").forEach { input ->
                 on("check $input is nice") {
-                    val word = Word(input)
-                    it("is naughty", { assertTrue(word.nice())})
+                    it("is naughty", { assertTrue(input.nice1())})
                 }
             }
             listOf("jchzalrnumimnmhp", "haegwjzuvuyypxyu", "dvszwmarrgswjxmb").forEach { input ->
                 on("check $input is naughty") {
-                    val word = Word(input)
-                    it("is naughty", { assertFalse(word.nice())})
+                    it("is naughty", { assertFalse(input.nice1())})
                 }
             }
         }

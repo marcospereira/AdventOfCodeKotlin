@@ -17,6 +17,7 @@ buildscript {
 apply plugin: "kotlin"
 apply plugin: 'application'
 apply plugin: 'org.jetbrains.dokka'
+apply plugin: "jacoco"
 
 defaultTasks 'run'
 
@@ -36,3 +37,13 @@ repositories {
     }
 }
 
+jacoco {
+    toolVersion = "0.7.6.201602180812"
+
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
