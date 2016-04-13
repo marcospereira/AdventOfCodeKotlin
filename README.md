@@ -1,5 +1,7 @@
 # Advent of Code in Kotlin
 
+[![Build Status](https://travis-ci.org/marcospereira/AdventOfCodeKotlin.svg?branch=master)](https://travis-ci.org/marcospereira/AdventOfCodeKotlin)
+
 My solutions to [Advent of Code](http://adventofcode.com/) using [Kotlin](https://kotlinlang.org/).
 
 ## Why
