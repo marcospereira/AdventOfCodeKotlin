@@ -2,7 +2,7 @@ group 'com.github.marcospereira'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.0.0-beta-4589'
+    ext.kotlin_version = '1.0.0'
     repositories {
         mavenCentral()
     }
@@ -15,15 +15,18 @@ apply plugin: 'kotlin'
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
     compile 'commons-codec:commons-codec:1.10'
-    testCompile 'org.jetbrains.spek:spek:0.1.189'
+    testCompile 'org.jetbrains.spek:spek:0.1.199'
 }
+
 repositories {
     mavenCentral()
     maven {
         url "http://repository.jetbrains.com/all/"
     }
 }
+
 sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
 }
